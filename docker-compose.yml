@@ -1,0 +1,58 @@
+version: '2'
+
+services:
+  postgres:
+    image: 'postgres:10.3-alpine'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+    env_file:
+      - '.env'
+
+  redis:
+    image: 'redis:4.0-alpine'
+    command: redis-server
+    volumes:
+      - 'redis:/data'
+
+  app:
+    ports:
+      - '3000:3000'
+    env_file:
+      - '.env'
+    command: puma -C config/puma.rb
+    depends_on: ['postgres', 'redis']
+    volumes:
+      - ./app:/app
+      - rails:/usr/local/bundle
+    build:
+      context: .
+      dockerfile: rails.dockerfile
+    environment:
+      - PAGER='busybox less'
+
+  sidekiq:
+    depends_on: [postgres, redis]
+    build:
+      context: .
+      dockerfile: rails.dockerfile
+    command: sidekiq -C config/sidekiq.yml.erb
+    volumes:
+      - ./app:/app
+      - rails:/usr/local/bundle
+    env_file: '.env'
+
+  ungit:
+    command: ungit --no-launchBrowser --forcedLaunchPath=/var/www
+    build:
+      context: .
+      dockerfile: ungit.dockerfile
+    ports: ["8448:8448"]
+    volumes:
+      - .:/var/www/
+      - /etc/ssh/ssh_config:/etc/ssh/ssh_config
+      - /home/nickf/.ssh:/home/node/.ssh
+
+volumes:
+  redis:
+  postgres:
+  rails:
