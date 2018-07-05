@@ -26,6 +26,11 @@ module Resaler
     config.log_tags  = %i[subdomain uuid]
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
+    # Generators settings
+    config.generators do |g|
+      g.test_fraemwork :rspec
+    end
+
     # Action mailer settings.
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
