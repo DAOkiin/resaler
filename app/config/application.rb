@@ -31,6 +31,9 @@ module Resaler
       g.test_fraemwork :rspec
     end
 
+    # Action controller settings
+    config.action_controller.include_all_helpers = false
+
     # Action mailer settings.
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
