@@ -41,7 +41,6 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
 
-
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
@@ -66,6 +65,9 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   Capybara.javascript_driver = :poltergeist
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, js_errors: false)
+  end
   Capybara.server = :puma
 
   # RSpec Rails can automatically mix in different behaviours to your tests

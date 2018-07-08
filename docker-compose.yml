@@ -30,6 +30,20 @@ services:
     environment:
       - PAGER='busybox less'
 
+  rspec:
+    env_file: '.env'
+    command: rspec
+    depends_on: ['postgres', 'redis']
+    volumes:
+      - ./app:/app
+      - rspec:/usr/local/bundle
+    build:
+      context: .
+      dockerfile: rspec.dockerfile
+    environment:
+      - PAGER='busybox less'
+    working_dir: /app
+
   sidekiq:
     depends_on: [postgres, redis]
     build:
@@ -56,3 +70,4 @@ volumes:
   redis:
   postgres:
   rails:
+  rspec:
