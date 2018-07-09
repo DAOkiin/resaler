@@ -42,16 +42,16 @@ gem 'font-awesome-rails', '~> 4.7'
 group :development, :test do
   # Call 'byebug' anywhere in your code to drop into a debugger console
   gem 'byebug', platform: :mri
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'rspec-rails', '~> 3.7'
 end
 
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'factory_bot_rails', '~> 4.0'
   gem 'headless'
   gem 'poltergeist'
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 3.7'
 end
 
 group :development do
