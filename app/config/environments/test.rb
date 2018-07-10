@@ -47,4 +47,6 @@ Rails.application.configure do
 
   # Show less verbose log output than in development
   config.log_level = :warn
+
+  config.cache_store = :null_store
 end

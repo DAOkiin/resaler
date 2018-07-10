@@ -3,8 +3,8 @@ class CreateSearches < ActiveRecord::Migration[5.2]
     create_table :searches do |t|
       t.integer :user_id
       t.string :query
-      t.integer :min_price
-      t.integer :max_price
+      t.integer :min_price, null: false, default: 0
+      t.integer :max_price, null: false, default: 0
 
       t.timestamps
     end

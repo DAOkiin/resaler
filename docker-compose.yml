@@ -23,7 +23,7 @@ services:
     depends_on: ['postgres', 'redis']
     volumes:
       - ./app:/app
-      - rails:/usr/local/bundle
+      - gems_alpine:/usr/local/bundle
     build:
       context: .
       dockerfile: rails.dockerfile
@@ -32,11 +32,13 @@ services:
 
   rspec:
     env_file: '.env'
-    command: rspec
+    command: bash
+    tty: true
+    stdin_open: true
     depends_on: ['postgres', 'redis']
     volumes:
       - ./app:/app
-      - rspec:/usr/local/bundle
+      - gems_ubuntu:/usr/local/bundle
     build:
       context: .
       dockerfile: rspec.dockerfile
@@ -52,7 +54,7 @@ services:
     command: sidekiq -C config/sidekiq.yml.erb
     volumes:
       - ./app:/app
-      - rails:/usr/local/bundle
+      - gems_alpine:/usr/local/bundle
     env_file: '.env'
 
   ungit:
@@ -69,5 +71,6 @@ services:
 volumes:
   redis:
   postgres:
-  rails:
+  gems_alpine:
+  gems_ubuntu:
   rspec:
