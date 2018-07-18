@@ -28,6 +28,7 @@ services:
       context: .
       dockerfile: rails.dockerfile
     environment:
+      - VIRTUAL_HOST=nfreeman.pw
       - PAGER='busybox less'
 
   rspec:
@@ -74,3 +75,8 @@ volumes:
   gems_alpine:
   gems_ubuntu:
   rspec:
+
+networks:
+  default:
+    external:
+      name: webproxy

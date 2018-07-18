@@ -4,7 +4,7 @@
   <title><%= yield :title %></title>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="<%= yield :meta_description %>"/>
 
   <%= action_cable_meta_tag %>
@@ -26,6 +26,7 @@
 </head>
 
 <body>
+  <br>
   <%= render 'layouts/google_analytics' %>
   <header>
     <%= render 'layouts/navigation' %>

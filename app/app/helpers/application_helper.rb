@@ -1,6 +1,8 @@
 require 'navigation_helper.rb'
 
 module ApplicationHelper
+  # Add icons from fontawesome
+  # include FontAwesome::Rails::IconHelper
   include NavigationHelper
 
   def title(page_title)

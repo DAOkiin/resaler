@@ -32,9 +32,10 @@ gem 'jquery-rails', '~> 4.3'
 # Use Turbolinks. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Use Bootstrap SASS for Bootstrap support
-gem 'bootstrap-sass', '~> 3.3'
+# gem 'bootstrap-sass', '~> 3.3'
 # TODO: upgrade to Bootstrap4 and use table cards
-# gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.1.1'
+gem "bootstrap_form", ">= 4.0.0.alpha1"
 # gem "bootstrap-table-rails"
 # Use Font Awesome Rails for Font Awesome icons
 gem 'font-awesome-rails', '~> 4.7'
@@ -64,6 +65,9 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %>
   gem 'web-console', '~> 3.3.0'
 
+  # RailsPanel
+  gem 'meta_request'
+
   # Get notified of file changes. Read more: https://github.com/guard/listen
   gem 'listen', '>= 3.0.5', '< 3.2'
 
@@ -76,7 +80,6 @@ end
 gem 'tzinfo-data'
 
 gem 'airbrake', '~> 7.3'
-gem 'bootstrap_form'
 gem 'devise'
 gem 'nokogiri'
 gem 'sidecloq'
