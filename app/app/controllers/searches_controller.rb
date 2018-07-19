@@ -1,5 +1,6 @@
 # Create and list user searches
 class SearchesController < ApplicationController
+  before_action :authenticate_user!
   def index
     current_user.searches
   end
@@ -9,9 +10,23 @@ class SearchesController < ApplicationController
     respond_to do |format|
       format.js do
         flash.now[:notice] = if @search.save
-                               'Run was successfully created.'
+                               'Запрос успешно добавлен'
                              else
-                               'Some error'
+                               'Some error on create'
+                             end
+      end
+    end
+  end
+
+  def destroy
+    @search = Search.find(params[:id])
+    @search.destroy
+    respond_to do |format|
+      format.js do
+        flash.now[:notice] = if @search.deleted?
+                               'Запрос успешно удален'
+                             else
+                               'Some error on destroy'
                              end
       end
     end

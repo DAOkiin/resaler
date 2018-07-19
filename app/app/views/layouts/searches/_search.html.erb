@@ -1,9 +1,16 @@
-<div class="search-card">
+<div class="search-card" id="search-<%= search.id %>">
   <div class="card" style="border: solid">
     <div class="card-body">
       <h5 class="card-title"><%= search.query %></h5>
       <p class="card-text">
         Диапазон цен: <%= search.min_price %> - <%= search.max_price %>
+        <%= link_to search, remote: true, method: :delete,
+                            data: { confirm: "Вы уверены?" } do %>
+          <i class="fa fa-trash"
+             aria-hidden='true'
+             id="delete-search-<%= search.id %>"></i>
+        <% end %>
+        </i>
       </p>
     </div>
   </div>
