@@ -1,0 +1,2 @@
+$('#flash_messages').html("<%= escape_javascript(render 'layouts/flash') %>")
+$('#searches').append("<%= j render 'layouts/searches/search', search: @search %>")

@@ -1,0 +1,27 @@
+<div class="input-group">
+  <span class="input-group-btn">
+    <button type="button"
+            class="btn btn-primary"
+            data-toggle="collapse"
+            data-target="#collapseExample"
+            id="new-search">
+            Добавить запрос
+    </button>
+  </span>
+    <div class="collapse" id="collapseExample">
+      <%= bootstrap_form_with(model: @search,
+                              url: searches_path,
+                              confirm: 'Вы уверены?',
+                              'disable-with': 'Сохранение...'
+                              ) do |f| %>
+        <%= f.text_field :query,
+          label: 'Текст запроса',
+          help: "Must be at least 6 characters long" %>
+        <%= f.number_field :min_price,
+                            label: 'Минимальная цена' %>
+        <%= f.number_field :max_price,
+                            label: 'Максимальная цена' %>
+        <%= f.submit 'Сохранить', id: 'create-search' %>
+      <% end %>
+    </div>
+</div><!-- /input-group -->

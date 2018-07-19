@@ -48,5 +48,10 @@ Rails.application.configure do
   # Show less verbose log output than in development
   config.log_level = :warn
 
+  # Disable cache store
   config.cache_store = :null_store
+
+  # Middleware for skip css animation
+  require_relative '../../spec/support/no_animations'
+  config.middleware.use Rack::NoAnimations
 end

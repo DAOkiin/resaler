@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!
   def home
-    @searches = current_user.searches if user_signed_in?
+    @search = current_user.searches.new
+    @searches = current_user.searches.reject(&:new_record?)
   end
 end

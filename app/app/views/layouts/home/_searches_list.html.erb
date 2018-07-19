@@ -1,10 +1,8 @@
-<% @searches.each do |search| %>
-  <div class="col-sm-6 search-card">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= search.query %></h5>
-        <p class="card-text">Диапазон цен: <%= search.min_price %> - <%= search.max_price %></p>
-      </div>
-    </div>
+<div class='row w-100'>
+  <div class="col-sm-4">
+    <%= render 'layouts/home/new_search_row' %>
   </div>
-<% end %>
+  <div class="col-sm-8" id="searches">
+    <%= render partial: 'layouts/searches/search', collection: @searches %>
+  </div>
+</div>
