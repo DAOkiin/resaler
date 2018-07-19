@@ -6,5 +6,10 @@ RSpec.describe Search, type: :model do
       association = described_class.reflect_on_association(:user).macro
       expect(association).to eq :belongs_to
     end
+
+    it 'has_many items' do
+      association = described_class.reflect_on_association(:items)
+      expect(association.macro).to eq :has_many
+    end
   end
 end

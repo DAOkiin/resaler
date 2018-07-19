@@ -1,5 +1,6 @@
 class Search < ApplicationRecord
   belongs_to :user
+  has_many :items
 
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :deleted, -> { where("#{table_name}.deleted_at IS NOT NULL") }
