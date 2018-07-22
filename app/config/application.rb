@@ -69,6 +69,9 @@ module Resaler
     origins = ENV['ACTION_CABLE_ALLOWED_REQUEST_ORIGINS'].split(',')
     origins.map! { |url| /#{url}/ }
     config.action_cable.allowed_request_origins = origins
+
+    # Active Record schema format
+    # config.active_record.schema_format = :sql
   end
 end
 

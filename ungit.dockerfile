@@ -2,7 +2,7 @@ FROM node:7.10-alpine
 
 USER root
 
-RUN npm install ungit -g \
+RUN npm install ungit@1.4.26 -g \
   && apk add --no-cache git openssh-client
 
 

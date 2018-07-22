@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_19_221324) do
+ActiveRecord::Schema.define(version: 2018_07_20_181123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2018_07_19_221324) do
     t.string "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "source"
     t.index ["product_id"], name: "index_items_on_product_id", unique: true
   end
 
@@ -36,8 +37,8 @@ ActiveRecord::Schema.define(version: 2018_07_19_221324) do
   create_table "searches", force: :cascade do |t|
     t.integer "user_id"
     t.string "query"
-    t.integer "min_price"
-    t.integer "max_price"
+    t.integer "min_price", default: 0, null: false
+    t.integer "max_price", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
