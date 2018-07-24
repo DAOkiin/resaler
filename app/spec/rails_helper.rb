@@ -10,6 +10,7 @@ require 'capybara/poltergeist'
 require 'factory_bot_rails'
 require 'capybara/rspec'
 require 'database_cleaner'
+require 'shoulda/matchers'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 DatabaseCleaner.allow_remote_database_url = true
@@ -27,7 +28,7 @@ DatabaseCleaner.allow_remote_database_url = true
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -64,6 +65,9 @@ RSpec.configure do |config|
 
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include FactoryBot::Syntax::Methods
+  config.include Shoulda::Matchers::ActiveModel, type: :model
+  config.include Shoulda::Matchers::ActiveRecord, type: :model
+
 
   Capybara.javascript_driver = :poltergeist
   Capybara.register_driver :poltergeist do |app|

@@ -15,14 +15,16 @@ module Scraper
       page.css('.product_item').each do |item|
         result[item['data-id']] =
           {
-            source: :youla,
-            product_id:  item['data-id'],
-            title:    item.xpath('.//*[@class="product_item__title"]')
-                          .text.strip,
-            url:      'https://youla.io' + item.xpath('./a')
-                                               .attribute('href').value,
-            price:    item.xpath('.//*[@class="product_item__description"]')
-                          .text.tr('^0-9', '')
+            item_data: {
+              source: :youla,
+              product_id:  item['data-id'],
+              title:    item.xpath('.//*[@class="product_item__title"]')
+                            .text.strip,
+              url:      'https://youla.io' + item.xpath('./a')
+                                                 .attribute('href').value,
+            },
+            price:      item.xpath('.//*[@class="product_item__description"]')
+                            .text.tr('^0-9', '')
           }
       end
 

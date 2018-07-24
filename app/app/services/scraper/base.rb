@@ -11,17 +11,18 @@ module Scraper
     def initialize(params)
       raise NotImplementedError if self.class == Base
       @url = construct_query(params[:query])
+      @search_id = params[:search_id]
     end
 
     def call
-      page = get_page(@url)
+      page = scrap_page
       parse_data_from_page(page)
     end
 
     private
 
-    def get_page(url)
-      Nokogiri::HTML(open(url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE))
+    def scrap_page
+      Nokogiri::HTML(open(@url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE))
     end
   end
 end
