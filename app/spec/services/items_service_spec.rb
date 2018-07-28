@@ -15,9 +15,11 @@ RSpec.describe ItemsService do
     end
 
     it 'update old items and create prices' do
-      old_item
+      items_data = DataSupport.parsed_items(init_id: old_item.id)
+      expect(old_item.product_id).to eq(items_data.keys.first)
       expect do
-        described_class.call(search_id: search.id, data: items_data)
+        described_class.call(search_id: search.id,
+                             data: items_data)
       end.to change { Item.first.updated_at }
         .and change { Price.count }.by(1)
     end
