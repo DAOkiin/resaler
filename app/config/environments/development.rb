@@ -61,5 +61,14 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # configure web console
   config.web_console.whitelisted_ips = '77.50.11.62'
+  config.web_console.whiny_requests = false
+
+  # Hot reload
+  # config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
+
+  # App monitoring
+  require 'instrumental_agent'
+  I = Instrumental::Agent.new(ENV['INSTRUMENTAL_KEY'])
 end

@@ -46,7 +46,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Show less verbose log output than in development
-  config.log_level = :warn
+  config.log_level = ENV['LOG_LEVEL']
 
   # Disable cache store
   config.cache_store = :null_store
