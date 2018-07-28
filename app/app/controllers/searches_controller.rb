@@ -5,6 +5,14 @@ class SearchesController < ApplicationController
     current_user.searches
   end
 
+  def show
+    @search = Search.find(params[:id])
+    @items = @search.items
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def create
     @search = current_user.searches.new(searches_params)
     respond_to do |format|
