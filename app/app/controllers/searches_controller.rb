@@ -7,7 +7,8 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
-    @items = @search.items
+    @items = Item.with_actual_price(params[:id]).sort_by(&:price_date)
+
     respond_to do |format|
       format.html
     end

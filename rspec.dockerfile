@@ -63,7 +63,8 @@ RUN gem install bundler --version "$BUNDLER_VERSION" \
   && apt-get update \
   && apt-get install -y libpq-dev \
   nodejs \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && useradd -u 1000 deployer
 
 # install things globally, for great justice
 # and don't create ".bundle" in all our apps
@@ -74,4 +75,5 @@ ENV BUNDLE_PATH="$GEM_HOME" \
   BUNDLE_APP_CONFIG="$GEM_HOME"
 ENV PATH $BUNDLE_BIN:$PATH
 
+USER deployer
 WORKDIR /app
