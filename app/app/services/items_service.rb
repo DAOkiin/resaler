@@ -13,7 +13,7 @@ class ItemsService
   end
 
   def call
-    update_existed_items
+    update_existed_items unless @existed_product_ids.empty?
     create_new_items
   end
 
@@ -23,7 +23,10 @@ class ItemsService
     @data.slice(*@existed_product_ids).each do |product_id, payload|
       item = Item.find_by(product_id: product_id)
       item.update_attributes(@data[product_id][:item_data])
-      item.prices.create! value: payload[:price]
+      if item.prices.last.value.to_i != payload[:price].to_i
+        item.prices.create! value: payload[:price]
+      end
+
     end
   end
 

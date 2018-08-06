@@ -1,0 +1,15 @@
+<div class="container">
+    <table class="table table-responsive table-sm">
+        <thead class="thead-inverse">
+            <tr>
+                <th scope="col">Источник</th>
+                <th scope="col">Заголовок</th>
+                <th scope="col">Цена</th>
+                <th scope="col">URL</th>
+            </tr>
+        </thead>
+        <tbody>
+<%= render partial: "layouts/items/item_tr", collection: @items, as: :item %>
+        </tbody>
+    </table>
+</div>

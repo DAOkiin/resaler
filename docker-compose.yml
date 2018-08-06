@@ -17,9 +17,10 @@ services:
   app:
     ports:
       - '3000:3000'
+      - '35729:35729'
     env_file:
       - '.env'
-    command: puma -C config/puma.rb
+    command: foreman start -f Procfile.dev -p 3000
     depends_on: ['postgres', 'redis']
     volumes:
       - ./app:/app
@@ -29,6 +30,7 @@ services:
       dockerfile: rails.dockerfile
     environment:
       - VIRTUAL_HOST=nfreeman.pw
+      - VIRTUAL_PORT=3000
       - PAGER='busybox less'
 
   rspec:

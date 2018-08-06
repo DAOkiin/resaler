@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'pages#home'
 
-  resources :searches
+  resources :searches, only: %i[index show create destroy]
+  resources :items, only: %i[show]
 
   devise_scope :user do
     get 'signup', to: 'devise/registrations#new'

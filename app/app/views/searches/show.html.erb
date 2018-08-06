@@ -1,29 +1,29 @@
-<div class="search-card card text-center" id="search-<%= search.id %>">
+<div class="search-card card text-center" id="search-<%= @search.id %>">
   <div class="card" style="border: solid">
     <div class="card-body">
       <div class="card-header">
-        <%= link_to search do %>
-          <%= search.query %>
-        <% end %>
+          <%= @search.query %>
       </div>
+
       <div class="card-body">
         <p class="card-text">
           Диапазон цен:
         </p>
         <p class="card-text">
-          <%= search.min_price %> - <%= search.max_price %>
-          <%= link_to search, remote: true, method: :delete,
+          <%= @search.min_price %> - <%= @search.max_price %>
+          <%= link_to @search, remote: true, method: :delete,
                               data: { confirm: "Вы уверены?" } do %>
             <i class="fa fa-trash"
                aria-hidden='true'
-               id="delete-search-<%= search.id %>"></i>
+               id="delete-search-<%= @search.id %>"></i>
           <% end %>
         </p>
       </div>
+
       <div class="card-footer text-muted">
-          Найдено всего: <%= search.items_count %>
+          2 days ago
       </div>
     </div>
   </div>
 </div>
-
+<%= render 'layouts/items/items_table' %>
